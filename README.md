@@ -1,2 +1,2 @@
-# ZuratculUi
-Ui kit
+# Zuratcul Ui
+component library for vue js
