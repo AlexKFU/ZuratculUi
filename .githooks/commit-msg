@@ -4,7 +4,7 @@ const { readFileSync, writeFileSync } = require('node:fs');
 const { argv } = require('node:process');
 
 
-const COMMIT_MESSAGE_REGEX = /^(feature|bug|chore|doc)(\[ZU-\d+\]):([\s\w]*)$/
+const COMMIT_MESSAGE_REGEX = /^(feature|bug|chore|doc)(\[ZU-\d+\])/
 try {
     const [, ,gitCommitMessagePath] = argv
     const commitMessage = readFileSync(gitCommitMessagePath, 'utf8').trim();
