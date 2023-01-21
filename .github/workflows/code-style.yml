@@ -1,0 +1,18 @@
+name: code-style
+run-name: ${{ github.actor }} checker for code style of project
+on: [push]
+jobs:
+  check-code-style:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.13.0'
+          cache: 'yarn'
+      - name: Install deps
+        run: yarn --frozen-lockfile
+      - name: Run prettier
+        run: yarn prettier
+      - name: Run eslint
+        run: yarn lint
