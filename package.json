@@ -6,7 +6,8 @@
     "prettier": "prettier --check \"**/*.{ts,js,vue}\" --ignore-path ./.gitignore",
     "prettier:fix": "prettier --write --cache \"**/*.{ts,js,vue}\"",
     "lint": "npx eslint \"**/*.{ts,js,vue}\" --ignore-path .gitignore",
-    "lint:fix": "yarn lint --cache --fix"
+    "lint:fix": "yarn lint --cache --fix",
+    "init:git-hooks": "chmod +x .githooks/* && git config core.hooksPath .githooks"
   },
   "dependencies": {
     "vue": "^3.2.45"
