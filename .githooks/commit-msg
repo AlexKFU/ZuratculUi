@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+const { execSync } = require('node:child_process');
+const { readFileSync, writeFileSync } = require('node:fs');
+const { argv } = require('node:process');
+
+
+const COMMIT_MESSAGE_REGEX = /^(feature|bug|chore|doc)(\[ZU-\d+\]):([\s\w]*)$/
+try {
+    const [, ,gitCommitMessagePath] = argv
+    const commitMessage = readFileSync(gitCommitMessagePath, 'utf8').trim();
+    const commitMessageIsValid = COMMIT_MESSAGE_REGEX.test(commitMessage);
+    if(commitMessageIsValid) return;
+
+    const branchName = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+    const newCommitMessage = `${branchName}: ${commitMessage}`;
+    writeFileSync(gitCommitMessagePath, newCommitMessage)
+} catch (err) {
+    console.error(`Error: ${err.message}`);
+}
