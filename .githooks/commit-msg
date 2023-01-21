@@ -3,7 +3,7 @@ const { execSync } = require('node:child_process');
 const { readFileSync, writeFileSync } = require('node:fs');
 const { argv } = require('node:process');
 
-
+const TASK_PREFIX_REGEX = /ZU-\d+/g;
 const COMMIT_MESSAGE_REGEX = /^(feature|bug|chore|doc)(\[ZU-\d+\])/
 try {
     const [, ,gitCommitMessagePath] = argv
@@ -12,7 +12,8 @@ try {
     if(commitMessageIsValid) return;
 
     const branchName = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
-    const newCommitMessage = `${branchName}: ${commitMessage}`;
+    const preparedBranchName = branchName.replace(TASK_PREFIX_REGEX, (taskPrefix) => `[${taskPrefix}]`);
+    const newCommitMessage = `${preparedBranchName}: ${commitMessage}`;
     writeFileSync(gitCommitMessagePath, newCommitMessage)
 } catch (err) {
     console.error(`Error: ${err.message}`);
