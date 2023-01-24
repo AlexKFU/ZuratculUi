@@ -3,11 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "prettier": "prettier --check \"**/*.{ts,js,vue}\" --ignore-path ./.gitignore",
+    "prettier": "prettier --check \"**/*.{ts,js,vue,ejs.t}\" --ignore-path ./.gitignore",
     "prettier:fix": "prettier --write --cache \"**/*.{ts,js,vue}\"",
     "lint": "npx eslint \"**/*.{ts,js,vue}\" --ignore-path .gitignore",
     "lint:fix": "yarn lint --cache --fix",
-    "init:git-hooks": "chmod +x .githooks/* && git config core.hooksPath .githooks"
+    "init:git-hooks": "chmod +x .githooks/* && git config core.hooksPath .githooks",
+    "init:component": "hygen generator component"
   },
   "dependencies": {
     "vue": "^3.2.45"
@@ -18,6 +19,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "eslint": "^8.32.0",
     "eslint-plugin-vue": "^9.9.0",
+    "hygen": "^6.2.11",
     "prettier": "2.8.3",
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
