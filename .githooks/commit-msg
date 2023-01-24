@@ -3,7 +3,7 @@ const { execSync } = require('node:child_process');
 const { readFileSync, writeFileSync } = require('node:fs');
 const { argv } = require('node:process');
 
-const TASK_PREFIX_REGEX = /ZU-\d+/g;
+const TASK_PREFIX_REGEX = /\/ZU-\d+/g;
 const COMMIT_MESSAGE_REGEX = /^(feature|bug|chore|doc)(\[ZU-\d+\])/
 try {
     const [, ,gitCommitMessagePath] = argv
